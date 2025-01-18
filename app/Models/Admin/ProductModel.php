@@ -48,4 +48,33 @@ class ProductModel{
             return false;
         }
     }
+
+    // thêm sp
+    public function addProductToDB($destPath) {
+        $data = [
+            ':name' => $_POST['name'],
+            ':category_id' => $_POST['category'],
+            ':description' => $_POST['description'],
+            ':price' => $_POST['price'],
+            ':price_sale' => is_numeric($_POST['pricesale'] ?? null) ? $_POST['pricesale'] : null,
+            ':stock' => $_POST['stock'],
+            ':image_main' => $destPath
+        ];
+    
+        $sql = "
+            INSERT INTO `products`(`name`, `category_id`, `description`, `price`, `price_sale`, `stock`, `image_main`) 
+            VALUES (:name, :category_id, :description, :price, :price_sale, :stock, :image_main)
+        ";
+    
+        $stmt = $this->db->pdo->prepare($sql);
+        return $stmt->execute($data) ? $this->db->pdo->lastInsertId() : false;
+    }
+    
+    public function addGalleryImage($destPathImage, $idProduct) {
+        $sql = "INSERT INTO `product_image`(`product_id`, `image`) VALUES (:product_id, :image)";
+        $stmt = $this->db->pdo->prepare($sql);
+        return $stmt->execute([':product_id' => $idProduct, ':image' => $destPathImage]);
+    }
+    
+    
 }
