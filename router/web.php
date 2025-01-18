@@ -35,10 +35,12 @@ if ($role == "user") {
             $productController->showAllProduct();
             break;
         }
-        case 'add-product': {
+
+        case 'delete-product': {
             $productController = new ProductController();
-            $productController->addProduct();
+            $productController->deleteProduct();
             break;
         }
-}
+    }
+
 }
