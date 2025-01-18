@@ -3,7 +3,7 @@ class Database{
     public $pdo;
     public function __construct(){
         $host = 'localhost';
-        $db_name = 'duan1';
+        $db_name = 'nhom2_duan1';
         $user = 'root';
         $password = '';
         $port = '3306';

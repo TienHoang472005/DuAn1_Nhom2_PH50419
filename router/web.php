@@ -28,5 +28,17 @@ if ($role == "user") {
             $loginController = new LoginController();
             $loginController->logout();
             break;
-    }
+
+        // Quản lý sản phẩm
+        case 'all-product': {
+            $productController = new ProductController();
+            $productController->showAllProduct();
+            break;
+        }
+        case 'add-product': {
+            $productController = new ProductController();
+            $productController->addProduct();
+            break;
+        }
+}
 }
