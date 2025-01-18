@@ -41,6 +41,18 @@ if ($role == "user") {
             $productController->deleteProduct();
             break;
         }
+
+        case 'add-product': {
+            $productController = new ProductController();
+            $productController->addProduct();
+            break;
+        }
+        
+        case 'add-post-product': {
+            $productController = new ProductController();
+            $productController->addPostProduct();
+            break;
+        }
     }
 
 }
