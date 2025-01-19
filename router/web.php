@@ -65,6 +65,12 @@ if ($role == "user") {
             $productController->updatePostProduct();
             break;
         }
+
+        case 'show-product': {
+            $productController = new ProductController();
+            $productController->showProduct();
+            break;
+        }
     }
 
 }
