@@ -81,41 +81,41 @@
                                         </ul>
 
                                         <ul class="flex flex-column">
-    <?php foreach ($listProduct as $index => $product): ?>
-        <li class="wg-product item-row">
-            <div class="body-text"><?= $index + 1 ?></div>
-            <div class="body-text"><?= htmlspecialchars($product->name) ?></div>
-            <div class="body-text">
-                <img src="<?= htmlspecialchars($product->image_main) ?>" alt="Hình ảnh" width="50">
-            </div>
-            <div class="body-text"><?= htmlspecialchars($product->categoryName) ?></div>
-            <div class="body-text">
-                <?= number_format($product->price ?? 0) ?> VND
-                <?php if (!empty($product->price_sale)): ?>
-                    -<?= number_format($product->price_sale) ?> VND
-                <?php endif; ?>
-            </div>
-            <div class="body-text"><?= $product->stock ?></div>
-            <div class="list-icon-function">
-                <div class="item eye">
-                    <a href="?role=admin&act=show-user&id=<?= $product->id ?>">
-                        <i class="icon-eye"></i>
-                    </a>
-                </div>
-                <div class="item edit">
-                    <a href="?role=admin&act=update-product&id=<?= $product->id ?>">
-                        <i class="icon-edit-3"></i>
-                    </a>
-                </div>
-                <div class="item trash">
-                    <a href="?role=admin&act=delete-product&id=<?= $product->id ?>">
-                        <i class="icon-trash-2"></i>
-                    </a>
-                </div>
-            </div>
-        </li>
-    <?php endforeach; ?>
-</ul>
+                                            <?php foreach ($listProduct as $index => $product): ?>
+                                                <li class="wg-product item-row">
+                                                    <div class="body-text"><?= $index + 1 ?></div>
+                                                    <div class="body-text"><?= htmlspecialchars($product->name) ?></div>
+                                                    <div class="body-text">
+                                                        <img src="<?= htmlspecialchars($product->image_main) ?>" alt="Hình ảnh" width="50">
+                                                    </div>
+                                                    <div class="body-text"><?= htmlspecialchars($product->categoryName) ?></div>
+                                                    <div class="body-text">
+                                                        <?= number_format($product->price ?? 0) ?> VND
+                                                        <?php if (!empty($product->price_sale)): ?>
+                                                            -<?= number_format($product->price_sale) ?> VND
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="body-text"><?= $product->stock ?></div>
+                                                    <div class="list-icon-function">
+                                                        <div class="item eye">
+                                                            <a href="?role=admin&act=show-product&id=<?= $product->id ?>">
+                                                                <i class="icon-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="item edit">
+                                                            <a href="?role=admin&act=update-product&id=<?= $product->id ?>">
+                                                                <i class="icon-edit-3"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="item trash">
+                                                            <a href="?role=admin&act=delete-product&id=<?= $product->id ?>">
+                                                                <i class="icon-trash-2"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </div>
 
                                     <div class="divider"></div>

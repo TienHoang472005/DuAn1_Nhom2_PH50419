@@ -9,6 +9,18 @@ class ProductController extends ControllerAdmin
 
         include 'app/Views/Admin/products.php';
     }
+
+    // xem chi tiết sp
+    public function showProduct()
+    {
+        $id = $_GET['id'];
+        $productModel = new ProductModel();
+        $product = $productModel->getProductByID($id);
+        $listProductImage = $productModel->getProductImageById($id);
+        $categoryModel = new CategoryModel();
+        $category = $categoryModel->getCategoryByID($product->category_id);
+        include 'app/Views/Admin/show-product.php';
+    }
   
     public function deleteProduct() {
         $id = $_GET['id'];

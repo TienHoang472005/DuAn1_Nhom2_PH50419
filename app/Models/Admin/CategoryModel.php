@@ -11,6 +11,13 @@ class CategoryModel{
         $result = $query->fetchAll();
         return $result;
     }
+    public function getCategoryByID($id)
+    {
+        $sql = "SELECT name AS category_name FROM categories WHERE id = :id";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch();
+    }
 
     public function addCategory(){
         $name = $_POST['name'];
