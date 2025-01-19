@@ -53,6 +53,18 @@ if ($role == "user") {
             $productController->addPostProduct();
             break;
         }
+
+        case 'update-product': {
+            $productController = new ProductController();
+            $productController->updateProduct();
+            break;
+        }
+
+        case 'update-post-product': {
+            $productController = new ProductController();
+            $productController->updatePostProduct();
+            break;
+        }
     }
 
 }
