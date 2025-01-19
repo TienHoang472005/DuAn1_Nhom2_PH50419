@@ -77,8 +77,8 @@
                                         </div>
 
                                         <div class="mb-5">
-                                            <label for="description">Mô tả</label>
-                                            <textarea id="description" placeholder="Nhập mô tả" name="description" class="form-control"></textarea>
+                                            <label for="description">Mô tả sản phẩm</label>
+                                            <textarea id="description" placeholder="Nhập mô tả..." name="description" class="form-control"></textarea>
                                         </div>
 
                                         <div class="mb-5">

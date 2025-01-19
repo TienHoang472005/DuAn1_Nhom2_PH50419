@@ -178,7 +178,7 @@
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-user wg-user">
                                                 <span class="image">
-                                                    <img src="assets/Admin/images/avatar/user-1.png" alt="">
+                                                    <img src="assets/Admin/images/avatar1.jpg" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
                                                     <span class="body-text text-main-dark"><?= $_SESSION['users']['name'] ?></span>
