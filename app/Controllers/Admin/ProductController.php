@@ -9,7 +9,7 @@ class ProductController extends ControllerAdmin
 
         include 'app/Views/Admin/products.php';
     }
-  
+
     public function deleteProduct() {
         $id = $_GET['id'];
         $productModel = new ProductModel();

@@ -29,6 +29,13 @@ if ($role == "user") {
             $loginController->logout();
             break;
 
+        // Quản lý user
+        case 'all-user': {
+            $userController = new UserController();
+            $userController->getAllUser();
+            break;
+        }
+
         // Quản lý sản phẩm
         case 'all-product': {
             $productController = new ProductController();
