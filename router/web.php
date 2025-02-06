@@ -36,6 +36,12 @@ if ($role == "user") {
             break;
         }
 
+        case 'show-user': {
+            $userController = new UserController();
+            $userController->showUser();
+            break;
+        }
+
         // Quản lý sản phẩm
         case 'all-product': {
             $productController = new ProductController();

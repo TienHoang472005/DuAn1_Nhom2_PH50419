@@ -12,4 +12,15 @@ class UserModel{
         $result = $query->fetchAll();
         return $result;
     }
+
+    public function getUserById(){
+        $id = $_GET['id'];
+        $sql = "select * from users where id = :id";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        if($stmt->execute()){
+            return $stmt->fetch();
+        }
+        return false;
+    }
 }

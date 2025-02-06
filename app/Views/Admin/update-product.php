@@ -44,7 +44,7 @@
                                     <form action="?role=admin&act=update-post-product&id=<?= $_GET['id'] ?>" method="post" enctype="multipart/form-data">
                                         <div class="mb-5">
                                             <label for="name">Tên sản phẩm</label>
-                                            <input type="text" id="name" placeholder="Name" name="name" class="form-control" value="<?= $product->name ?>">
+                                            <input type="text" id="name" placeholder="Tên sản phẩm" name="name" class="form-control" value="<?= $product->name ?>">
                                         </div>
 
                                         <div class="mb-5">
@@ -60,7 +60,7 @@
 
                                         <div class="mb-5">
                                             <label for="price">Giá</label>
-                                            <input type="text" id="price" placeholder="GiáGiá" name="price" class="form-control" value="<?= $product->price ?>">
+                                            <input type="text" id="price" placeholder="Giá sản phẩm..." name="price" class="form-control" value="<?= $product->price ?>">
                                         </div>
 
                                         <div class="mb-5">
