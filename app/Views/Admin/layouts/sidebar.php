@@ -91,7 +91,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li class="sub-menu-item">
-                                <a href="#">
+                                <a href="?role=admin&act=all-user">
                                     <div class="text">Danh sách người dùng</div>
                                 </a>
                             </li>

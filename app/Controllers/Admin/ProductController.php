@@ -21,7 +21,7 @@ class ProductController extends ControllerAdmin
         $category = $categoryModel->getCategoryByID($product->category_id);
         include 'app/Views/Admin/show-product.php';
     }
-  
+
     public function deleteProduct() {
         $id = $_GET['id'];
         $productModel = new ProductModel();
