@@ -42,6 +42,12 @@ if ($role == "user") {
             break;
         }
 
+        case 'delete-user': {
+            $userController = new UserController();
+            $userController->deleteUser();
+            break;
+        }
+
         // Quản lý sản phẩm
         case 'all-product': {
             $productController = new ProductController();
