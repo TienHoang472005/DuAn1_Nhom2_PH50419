@@ -44,7 +44,7 @@
                                     <form action="?role=admin&act=add-post-product" method="post" enctype="multipart/form-data">
                                         <div class="mb-5">
                                             <label for="name">Tên sản phẩm</label>
-                                            <input type="text" id="name" placeholder="Name" name="name" class="form-control">
+                                            <input type="text" id="name" placeholder="Nhập tên sản phẩm..." name="name" class="form-control">
                                         </div>
 
                                         <div class="mb-5">
@@ -58,7 +58,7 @@
 
                                         <div class="mb-5">
                                             <label for="price">Giá</label>
-                                            <input type="text" id="price" placeholder="Giá" name="price" class="form-control">
+                                            <input type="text" id="price" placeholder="Giá sản phẩm..." name="price" class="form-control">
                                         </div>
 
                                         <div class="mb-5">

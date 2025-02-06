@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/Admin/icon/style.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/Admin/images/favicon.png">
+    <link rel="shortcut icon" href="assets/Admin/images/logo_bestbalo.png">
 </head>
 
 <body>
