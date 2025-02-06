@@ -39,57 +39,60 @@
                                     }
                                     ?>
                                     <div class="title-box">
-                                        Thêm mới sản phẩm
+                                        Chỉnh sửa sản phẩm
                                     </div>
-                                    <form action="?role=admin&act=add-post-product" method="post" enctype="multipart/form-data">
+                                    <form action="?role=admin&act=update-post-product&id=<?= $_GET['id'] ?>" method="post" enctype="multipart/form-data">
                                         <div class="mb-5">
                                             <label for="name">Tên sản phẩm</label>
-                                            <input type="text" id="name" placeholder="Name" name="name" class="form-control">
+                                            <input type="text" id="name" placeholder="Name" name="name" class="form-control" value="<?= $product->name ?>">
                                         </div>
 
                                         <div class="mb-5">
                                             <label for="category">Danh mục</label>
                                             <select name="category" id="category">
                                                 <?php foreach($listCategory as $key => $value): ?>
-                                                    <option value="<?= $value->id ?>"><?= $value->name ?></option>
+                                                    <option value="<?= $value->id ?>"
+                                                        <?php if($product->category_id == $value->id): ?> selected
+                                                        <?php endif?>><?= $value->name ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
 
                                         <div class="mb-5">
                                             <label for="price">Giá</label>
-                                            <input type="text" id="price" placeholder="Giá" name="price" class="form-control">
+                                            <input type="text" id="price" placeholder="GiáGiá" name="price" class="form-control" value="<?= $product->price ?>">
                                         </div>
 
                                         <div class="mb-5">
-                                            <label for="price-sale">Giá khuyến mãi</label>
-                                            <input type="text" id="price-sale" placeholder="Giá khuyến mãi..." name="pricesale" class="form-control">
+                                            <label for="price-sale">>Giá khuyến mãi</label>
+                                            <input type="text" id="price-sale" placeholder="Giá khuyến mãi" name="pricesale" class="form-control" value="<?= $product->price_sale ?>">
                                         </div>
 
                                         <div class="mb-5">
                                             <label for="stock">Số lượng</label>
-                                            <input type="text" id="stock" placeholder="Số lượng" name="stock" class="form-control">
+                                            <input type="text" id="stock" placeholder="Stock" name="stock" class="form-control" value="<?= $product->stock ?>">
                                         </div>
 
                                         <div class="mb-5">
                                             <label for="image_main">Ảnh chính</label>
-                                            <input type="file" id="image_main" placeholder="Ảnh chính" name="image_main" class="form-control" accept="image/*">
+                                            <img src="<?= $product->image_main ?>" alt="" width="50">
+                                            <input type="file" id="image_main" placeholder="Image Main" name="image_main" class="form-control" accept="image/*">
                                         </div>
 
                                         <div class="mb-5">
-                                            <label for="description">Mô tả sản phẩm</label>
-                                            <textarea id="description" placeholder="Nhập mô tả..." name="description" class="form-control"></textarea>
+                                            <label for="description">Mô tả</label>
+                                            <textarea id="description" placeholder="Description" name="description" class="form-control"> <?= $product->description ?></textarea>
                                         </div>
 
                                         <div class="mb-5">
                                             <h4>Ảnh phụ khác</h4>
-                                            <button class="btn-sm btn btn-primary" id="btnAddImage">Thêm ảnh</button>
+                                            <button class="btn-sm btn btn-warning" id="btnAddImage">Chỉnh sửa</button>
                                             <div class="block-image">
                                                 
                                             </div>
                                         </div>
                                         <hr>
-                                        <button class="btn btn-success">Thêm mới</button>
+                                        <button class="btn btn-success">Cập nhật</button>
                                     </form>
                                 </div>
                             </div>
@@ -136,6 +139,24 @@
 
     <script>
         $(".block_image").empty();
+                                                        
+        <?php if(count($listProductImage) > 0):?>
+            let UI = ""
+            <?php foreach($listProductImage as $key => $value): ?>
+                UI = `
+                <div class="mt-4 mb-4">
+                    <span>Hình ảnh</span> <br>
+                    <img src="<?= $value->image ?>" alt="" width="50">
+                    <div class="d-flex">
+                        <input type="file" class="form-control" name="image[]" accept="image/*">
+                        <button class="btn-sm btn btn-danger btn-delete">Xóa</button>
+                    </div>
+                </div>
+                `;
+                $(".block-image").append(UI)
+            <?php endforeach?>
+        <?php endif?>
+
         $("#btnAddImage").click(function(e) {
             e.preventDefault();
             let UI = `
@@ -157,5 +178,5 @@
 </body>
 
 
-
+<!-- Mirrored from themesflat.co/html/ecomus/admin-ecomus/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 14:58:54 GMT -->
 </html>
