@@ -23,4 +23,13 @@ class UserModel{
         }
         return false;
     }
+
+    public function deleteUser(){
+        $id = $_GET['id'];
+        $sql = "DELETE FROM `users` WHERE id = :id";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+    }
 }
