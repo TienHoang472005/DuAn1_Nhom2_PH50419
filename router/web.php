@@ -53,6 +53,36 @@ if ($role == "user") {
             $productController->addPostProduct();
             break;
         }
+
+        case 'all-category':
+            $categoryController = new CategoryController();
+            $categoryController->getAllCategory();  
+            break;
+
+         case 'add-category':
+            $categoryController = new CategoryController();
+            $categoryController->addCategory();  
+            break;
+
+        case 'delete-category':
+            $categoryController = new CategoryController();
+            $categoryController->deleteCategory();   
+            break;
+
+        case 'update-category':
+            $categoryController = new CategoryController();
+            $categoryController->updateCategory();   
+            break;
+
+        case 'add-post-category':
+            $categoryController = new CategoryController();
+            $categoryController->addPostCategory();  
+            break;
+
+        case 'update-post-category':
+            $categoryController = new CategoryController();
+            $categoryController->updatePostCategory();  
+            break;
     }
 
 }

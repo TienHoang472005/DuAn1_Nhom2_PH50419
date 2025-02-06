@@ -19,7 +19,7 @@ include 'app/Database/Database.php';
     include 'app/Controllers/Admin/HomeController.php';
     include 'app/Controllers/Admin/LoginController.php';
     include 'app/Controllers/Admin/ProductController.php';
-    
+    include 'app/Controllers/Admin/CategoryController.php';
 
 
     // User

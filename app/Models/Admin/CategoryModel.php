@@ -1,56 +1,92 @@
 <?php
-class CategoryModel{
+class CategoryModel
+{
     public $db;
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->db = new Database();
     }
 
-    public function allCategory(){
+    // Lấy tất cả danh mục
+    public function allCategory()
+    {
         $sql = "SELECT * FROM categories";
         $query = $this->db->pdo->query($sql);
-        $result = $query->fetchAll();
-        return $result;
+        return $query->fetchAll();
     }
 
-    public function addCategory(){
+    // Thêm danh mục mới
+    public function addCategory($image)
+    {
         $name = $_POST['name'];
-        $description = $_POST['description'];    
-        $sql = "INSERT INTO categories(name, description) VALUES (:name, :description)";
+        $sql = "INSERT INTO categories (name, image) VALUES (:name, :image)";
         $stmt = $this->db->pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':image', $image);
+
         return $stmt->execute();
     }
 
-    public function deleteCategory(){
-        $id = $_GET['id'];
+    // Xóa danh mục theo ID
+    public function deleteCategory($id)
+    {
+        $category = $this->getCategoryByID($id);
+
+        // Xóa ảnh nếu tồn tại
+        if ($category && !empty($category->image)) {
+            if (file_exists($category->image)) {
+                unlink($category->image);
+            }
+        }
+
         $sql = "DELETE FROM categories WHERE id = :id";
         $stmt = $this->db->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
+
         return $stmt->execute();
     }
 
-    public function getCategory(){
-        $id = $_GET['id'];
+    // Lấy danh mục theo ID
+    public function getCategoryByID($id)
+    {
         $sql = "SELECT * FROM categories WHERE id = :id";
         $stmt = $this->db->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
-        if($stmt->execute()){
+
+        if ($stmt->execute()) {
             return $stmt->fetch();
         }
+
         return false;
     }
 
-    public function updateCategoryDB(){
-        $id = $_GET['id'];
+    // Cập nhật danh mục
+    public function updateCategoryToDB($id, $destPath)
+    {
         $name = $_POST['name'];
-        $description = $_POST['description'];     
-        $sql = "UPDATE `categories` SET `name`=:name,`description` = :description  WHERE id = :id";
+        $category = $this->getCategoryByID($id);
+
+        if (!$category) {
+            return false; // Nếu danh mục không tồn tại
+        }
+
+        // Nếu có ảnh mới, cập nhật đường dẫn; nếu không, giữ nguyên ảnh cũ
+        $image = !empty($destPath) ? $destPath : $category->image;
+
+        // Nếu có ảnh mới, xóa ảnh cũ
+        if (!empty($destPath) && !empty($category->image)) {
+            if (file_exists($category->image)) {
+                unlink($category->image);
+            }
+        }
+
+        $sql = "UPDATE categories SET name = :name, image = :image WHERE id = :id";
         $stmt = $this->db->pdo->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':description', $description);
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+
         return $stmt->execute();
     }
 }
-?>
