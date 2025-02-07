@@ -36,7 +36,6 @@
                     <div class="login-box">
                         <div>
                             <h3>ĐĂNG NHẬP</h3>
-                           
                         </div>
                         <div class="error">
                             <?php 
