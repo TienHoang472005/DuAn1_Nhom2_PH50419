@@ -84,7 +84,13 @@
                     </li>
 
                     <!-- Quản lý người dùng -->
-                    <li class="menu-item has-children">
+                    <li class="menu-item has-children
+                    <?php
+                        if(isset($_GET['act']) && ($_GET['act'] == 'all-user' || $_GET['act'] == 'add-user' || $_GET['act'] == 'show-user' || $_GET['act'] == 'update-user')){
+                            echo 'active';
+                        }
+                    ?>
+                    ">
                         <a href="javascript:void(0);" class="menu-item-button">
                             <div class="icon"><i class="icon-user"></i></div>
                             <div class="text">Quản lý người dùng</div>
@@ -96,7 +102,7 @@
                                 </a>
                             </li>
                             <li class="sub-menu-item">
-                                <a href="#">
+                                <a href="?role=admin&act=add-user">
                                     <div class="text">Thêm người dùng</div>
                                 </a>
                             </li>

@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="vi" lang="vi">
-
+<html xmlns="assets\Admin\images\logo_bestbalo.png" xml:lang="en-US" lang="en-US">
 <head>
+    
     <meta charset="utf-8">
+    <title>BestBalo - Website bán balo hàng đầu VN</title>
+    <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Quản lý người dùng</title>
 
-    <!-- CSS -->
+    <!-- Theme Style -->
     <link rel="stylesheet" type="text/css" href="assets/Admin/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/Admin/css/animation.css">
     <link rel="stylesheet" type="text/css" href="assets/Admin/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/Admin/css/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="assets/Admin/css/styles.css">
+
+
+
+    <!-- Font -->
+    <link rel="stylesheet" href="assets/Admin/font/fonts.css">
+
+    <!-- Icon -->
     <link rel="stylesheet" href="assets/Admin/icon/style.css">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="assets\Admin\images\logo_bestbalo.png">
+    <link rel="apple-touch-icon-precomposed" href="assets\Admin\images\logo_bestbalo.png">
+
 </head>
 
 <body>

@@ -26,7 +26,6 @@
     <link rel="shortcut icon" href="assets\Admin\images\logo_bestbalo.png">
     <link rel="apple-touch-icon-precomposed" href="assets\Admin\images\logo_bestbalo.png">
 
-
 </head>
 
 <body>
@@ -37,94 +36,95 @@
         <div id="page" class="">
             <!-- layout-wrap -->
             <div class="layout-wrap">
-                <!-- tải trước -->
+                <!-- preload -->
                 <div id="preload" class="preload-container">
                     <div class="preloading">
                         <span></span>
                     </div>
                 </div>
-                <!-- /tải trước -->
-                <!-- menu bên trái -->
+                <!-- /preload -->
+                <!-- section-menu-left -->
                 <?php include 'app/Views/Admin/layouts/sidebar.php' ?>
-                <!-- /menu bên trái -->
-                <!-- nội dung bên phải -->
+                <!-- /section-menu-left -->
+                <!-- section-content-right -->
                 <div class="section-content-right">
-                    <!-- tiêu đề trang quản trị -->
+                    <!-- header-dashboard -->
                     <?php include 'app/Views/Admin/layouts/header.php' ?>
-                    <!-- /tiêu đề trang quản trị -->
-                    <!-- nội dung chính -->
+                    <!-- /header-dashboard -->
+                    <!-- main-content -->
                     <div class="main-content">
-                        <!-- khung nội dung chính -->
+                        <!-- main-content-wrap -->
                         <div class="main-content-inner">
-                            <!-- khung nội dung chính -->
+                            <!-- main-content-wrap -->
                             <div class="main-content-wrap"> 
-                                <div class="wg-box">
+                            <div class="wg-box">
+                                    <?php 
+                                        if(isset($_SESSION['message'])){
+                                            echo "<p>" . $_SESSION['message'] . "</p>";
+                                            unset($_SESSION['message']);
+                                        }
+                                        if(isset($_SESSION['error'])){
+                                            echo "<p>" . $_SESSION['error'] . "</p>";
+                                            unset($_SESSION['error']);
+                                        }
+                                    ?>
                                     <div class="title-box">
-                                        Chi tiết người dùng
+                                        Thêm mới User
                                     </div>
-                                    <form action="#">
-                                        <div class="mb-5">
-                                            <label for="name">Tên</label>
-                                            <input type="text" id="name" placeholder="Tên" name="name" class="form-control" 
-                                            value="<?= $user->name ?>" readonly>
+                                    <form action="?role=admin&act=post-add-user" method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Họ và Tên</label>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="Nhập họ và tên..." required>
                                         </div>
 
-                                        <div class="mb-5">
-                                            <label for="email">Email</label>
-                                            <input type="email" id="email" placeholder="Email" name="email" class="form-control"
-                                            value="<?= $user->email ?>" readonly>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Nhập địa chỉ email..." required>
                                         </div>
 
-                                        <div class="mb-5">
-                                            <label for="address">Địa chỉ</label>
-                                            <input type="text" id="address" placeholder="Địa chỉ" name="address" class="form-control"
-                                            value="<?= $user->address ?>" readonly>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Mật khẩu</label>
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Nhập mật khẩu..." required>
                                         </div>
 
-                                        <div class="mb-5">
-                                            <label for="phone">Số điện thoại</label>
-                                            <input type="text" id="phone" placeholder="Số điện thoại" name="phone" class="form-control"
-                                            value="<?= $user->phone ?>" readonly>
+                                        <div class="mb-3">
+                                            <label for="address" class="form-label">Địa chỉ</label>
+                                            <input type="text" id="address" name="address" class="form-control" placeholder="Nhập địa chỉ..." required>
                                         </div>
 
-                                        <div class="mb-5">
-                                            <label for="image">Ảnh đại diện</label>
-                                            <img src="<?= $user->image ?>" alt="" width="50">
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Số điện thoại</label>
+                                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Nhập số điện thoại..." required>
                                         </div>
 
-                                        <div class="mb-5">
-                                            <label for="role">Vai trò</label>
-                                            <select id="role" name="role" class="form-control" readonly>
+                                        <div class="mb-3">
+                                            <label for="image" class="form-label">Ảnh đại diện</label>
+                                            <input type="file" id="image" name="image" class="form-control" accept="image/*">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Vai trò</label>
+                                            <select id="role" name="role" class="form-control">
                                                 <option value="" hidden>Chọn vai trò</option>
-                                                <option value="1"
-                                                    <?php
-                                                        if($user->role == "1"){
-                                                            echo "selected";
-                                                        }
-                                                    ?>
-                                                >Quản trị viên</option>
-                                                <option value="2"
-                                                    <?php
-                                                        if($user->role == "2"){
-                                                            echo "selected";
-                                                        }
-                                                    ?>
-                                                >Người dùng</option>
+                                                <option value="1">Admin</option>
+                                                <option value="2">User</option>
                                             </select>
                                         </div>
+
+                                        <button type="submit" class="btn btn-primary">Thêm Người Dùng</button>
                                     </form>
                                 </div>
                             </div>
-                            <!-- /khung nội dung chính -->
+                            <!-- /main-content-wrap -->
                         </div>
-                        <!-- /khung nội dung chính -->
-                        <!-- chân trang -->
+                        <!-- /main-content-wrap -->
+                        <!-- bottom-page -->
                         <?php include 'app/Views/Admin/layouts/footer.php' ?>
-                        <!-- /chân trang -->
+                        <!-- /bottom-page -->
                     </div>
-                    <!-- /nội dung chính -->
+                    <!-- /main-content -->
                 </div>
-                <!-- /nội dung bên phải -->
+                <!-- /section-content-right -->
             </div>
             <!-- /layout-wrap -->
         </div>
@@ -132,7 +132,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- Các tệp JavaScript -->
+    <!-- Javascript -->
     <script src="assets/Admin/js/jquery.min.js"></script>
     <script src="assets/Admin/js/bootstrap.min.js"></script>
     <script src="assets/Admin/js/bootstrap-select.min.js"></script>

@@ -21,6 +21,10 @@ class UserController{
         include 'app/Views/Admin/show-user.php';
     }
 
+    public function addUser(){
+        include 'app/Views/Admin/add-user.php';
+    }
+
     public function deleteUser(){
         if(!isset($_GET['id'])){
             $_SESSION['message'] = 'Vui lòng chọn user cần xóa';
