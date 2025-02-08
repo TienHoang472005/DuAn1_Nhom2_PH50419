@@ -82,6 +82,23 @@ class UserController{
         }
     }
 
+    public function updateUser(){
+        if(!isset($_GET['id'])){
+            $_SESSION['message'] = 'Vui lòng chọn user cần sửa';
+            header("Location: ?role=admin&act=all-user");
+            exit;
+        }
+        $userModel = new UserModel();
+        $user = $userModel->getUserById();
+        if(!$user){
+            $_SESSION['message'] = 'Không tìm thấy dữ liệu';
+            header("Location: ?role=admin&act=all-user");
+            exit;
+        }
+
+        include 'app/Views/Admin/update-user.php';
+    }
+
     public function deleteUser(){
         if(!isset($_GET['id'])){
             $_SESSION['message'] = 'Vui lòng chọn user cần xóa';
