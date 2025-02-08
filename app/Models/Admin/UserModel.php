@@ -61,6 +61,37 @@ class UserModel{
         return false;
     }
 
+    public function updateUserToDB($destPath){
+        $user = $this->getUserById();
+
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'] != "" ? password_hash($_POST['password'], PASSWORD_BCRYPT) : $user->password; 
+        $address = $_POST['address'];
+        $phone = $_POST['phone'];
+        $role = $_POST['role'];
+        $image = $destPath;
+        $now = date('Y-m-d H:i:s');
+
+
+
+        $sql = "
+            UPDATE users SET name=:name,email=:email,password=:password,address=:address,phone=:phone,image=:image,role=:role WHERE id=:id
+        ";
+        
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':id', $_GET['id']);
+        
+        return $stmt->execute();
+    }
+
     public function deleteUser(){
         $id = $_GET['id'];
         $sql = "DELETE FROM `users` WHERE id = :id";
