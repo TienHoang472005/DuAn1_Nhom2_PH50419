@@ -45,24 +45,30 @@
                     </li>
 
                     <!-- Quản lý danh mục -->
-                    <li class="menu-item has-children ">
-                        <a href="javascript:void(0);" class="menu-item-button">
-                            <div class="icon"><i class="icon-layers"></i></div>
-                            <div class="text">Quản lý danh mục</div>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    <div class="text">Danh sách danh mục</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    <div class="text">Thêm danh mục</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <li class="menu-item has-children
+                                    <?php
+                                        if(isset($_GET['act']) && $_GET['act'] == 'all-category'|| $_GET['act'] == 'add-category'){
+                                            echo 'active';
+                                        }
+                                    ?>
+                                    ">
+                                        <a href="javascript:void(0);" class="menu-item-button">
+                                            <div class="icon"><i class="icon-layers"></i></div>
+                                            <div class="text">Quản lý danh mục</div>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="sub-menu-item">
+                                                <a href="?role=admin&act=all-category" class="">
+                                                    <div class="text">Danh sách</div>
+                                                </a>
+                                            </li>
+                                            <li class="sub-menu-item">
+                                                <a href="?role=admin&act=add-category" class="">
+                                                    <div class="text">Thêm mới</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
                     <!-- Quản lý đơn hàng -->
                     <li class="menu-item has-children">
