@@ -48,6 +48,12 @@ if ($role == "user") {
             break;
         }
 
+        case 'post-add-user': {
+            $userController = new UserController();
+            $userController->addPostUser();
+            break;
+        }
+
         case 'delete-user': {
             $userController = new UserController();
             $userController->deleteUser();
