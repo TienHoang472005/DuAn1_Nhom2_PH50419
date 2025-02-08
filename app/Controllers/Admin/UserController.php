@@ -99,6 +99,60 @@ class UserController{
         include 'app/Views/Admin/update-user.php';
     }
 
+    public function updatePostUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(!isset($_GET['id'])){
+                $_SESSION['message'] = 'Vui lòng chọn user cần sửa';
+                header("Location: ?role=admin&act=all-user");
+                exit;
+            }
+            if(!$this->checkValidate()){
+                header("Location: ?role=admin&act=update-user&id=" . $_GET['id'] );
+                exit;
+            }
+
+            $userModel = new UserModel();
+            $user = $userModel->getUserById();
+
+            // Thêm ảnh
+            $uploadDir = 'assets/Admin/upload/';
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $destPath = $user->image;
+
+            if(!empty($_FILES['image']['name'])){
+                $fileTmpPath = $_FILES['image']['tmp_name'];
+                $fileType = mime_content_type($fileTmpPath);
+                $fileName = basename($_FILES['image']['name']);
+                $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+                $newFileName = uniqid() . '.' . $fileExtension;
+
+                if(in_array($fileType, $allowedTypes)){
+                    $destPath = $uploadDir . $newFileName;
+                    if(!move_uploaded_file($fileTmpPath, $destPath)){
+                        $destPath = "";
+                    }
+                    // Xóa ảnh cũ
+                    unlink($user->image);
+                }
+
+            }
+
+            $userModel = new UserModel();
+            $message = $userModel->updateUserToDB($destPath);
+
+            if($message){
+                $_SESSION['message'] = 'Chỉnh sửa thành công';
+                header("Location: ?role=admin&act=all-user");
+                exit;
+            }else{
+                $_SESSION['message'] = 'Chỉnh sửa không thành công';
+                header("Location: ?role=admin&act=update-user&id=" . $_GET['id'] );
+                exit;
+            }
+        }
+    }
+
     public function deleteUser(){
         if(!isset($_GET['id'])){
             $_SESSION['message'] = 'Vui lòng chọn user cần xóa';

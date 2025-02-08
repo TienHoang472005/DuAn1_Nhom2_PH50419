@@ -60,6 +60,12 @@ if ($role == "user") {
             break;
         }
 
+        case 'update-post-user': {
+            $userController = new UserController();
+            $userController->updatePostUser();
+            break;
+        }
+
         case 'delete-user': {
             $userController = new UserController();
             $userController->deleteUser();
