@@ -21,6 +21,7 @@ include 'app/Database/Database.php';
     include 'app/Controllers/Admin/LoginController.php';
     include 'app/Controllers/Admin/UserController.php';
     include 'app/Controllers/Admin/ProductController.php';
+    include 'app/Controllers/Admin/CategoryController.php';
     
 
 

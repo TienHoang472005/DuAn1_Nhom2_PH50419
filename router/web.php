@@ -114,6 +114,12 @@ if ($role == "user") {
             $productController->showProduct();
             break;
         }
+
+        //quản lý danh mục
+        case 'all-category':
+            $categoryController = new CategoryController();
+            $categoryController->getAllCategory();  
+            break;
     }
 
 }
