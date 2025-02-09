@@ -55,4 +55,31 @@ class CategoryModel
     return $stmt->fetch(PDO::FETCH_OBJ); // Đảm bảo trả về dạng đối tượng
     }
     
+    public function updateCategoryToDB($id, $destPath)
+    {
+        $name = $_POST['name'];
+        $category = $this->getCategoryByID($id);
+
+        if (!$category) {
+            return false; // Nếu danh mục không tồn tại
+        }
+
+        // Nếu có ảnh mới, cập nhật đường dẫn; nếu không, giữ nguyên ảnh cũ
+        $image = !empty($destPath) ? $destPath : $category->image;
+
+        // Nếu có ảnh mới, xóa ảnh cũ
+        if (!empty($destPath) && !empty($category->image)) {
+            if (file_exists($category->image)) {
+                unlink($category->image);
+            }
+        }
+
+        $sql = "UPDATE categories SET name = :name, image = :image WHERE id = :id";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+
+        return $stmt->execute();
+    }
 }

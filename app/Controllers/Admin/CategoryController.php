@@ -97,5 +97,56 @@ class CategoryController extends ControllerAdmin
         header("Location: ?role=admin&act=all-category");
         exit;
     }
+
+    public function updateCategory()
+    {
+        if (!isset($_GET['id'])) {
+            $_SESSION['message'] = 'Chọn danh mục cần sửa';
+            header("Location: ?role=admin&act=all-category");
+            exit;
+        }
+
+        $categoryModel = new CategoryModel();
+        $category = $categoryModel->getCategoryByID($_GET['id']);
+
+        if (!$category) {
+            $_SESSION['message'] = 'Danh mục không tồn tại';
+            header("Location: ?role=admin&act=all-category");
+            exit;
+        }
+
+        include 'app/Views/Admin/update-category.php';
+    }
+
+    public function updatePostCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_GET['id'])) {
+                $_SESSION['message'] = 'Chọn danh mục cần sửa';
+                header("Location: ?role=admin&act=all-category");
+                exit;
+            }
+
+            if (!$this->checkValidate()) {
+                header("Location: ?role=admin&act=update-category&id=" . $_GET['id']);
+                exit;
+            }
+
+            $uploadDir = 'assets/Admin/upload/';
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $destPath = null;
+
+            if (!empty($_FILES['image']['name'])) {
+                $destPath = $this->uploadImage($_FILES['image'], $uploadDir, $allowedTypes);
+            }
+
+            $categoryModel = new CategoryModel();
+            $message = $categoryModel->updateCategoryToDB($_GET['id'], $destPath);
+
+            $_SESSION['message'] = $message ? 'Chỉnh sửa thành công' : 'Chỉnh sửa không thành công';
+            header("Location: ?role=admin&act=all-category");
+            exit;
+        }
+    }
 }
 ?>
