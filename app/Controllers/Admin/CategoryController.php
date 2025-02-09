@@ -61,7 +61,7 @@ class CategoryController extends ControllerAdmin
 
         return $destPath;
     }
-    
+
     public function checkValidate()
     {
         $name = $_POST['name'] ?? '';
@@ -73,5 +73,29 @@ class CategoryController extends ControllerAdmin
         }
     }
     
+    public function deleteCategory()
+    {
+        if (!isset($_GET['id'])) {
+            $_SESSION['message'] = 'Chọn danh mục cần xóa';
+            header("Location: ?role=admin&act=all-category");
+            exit;
+        }
+
+        $categoryModel = new CategoryModel();
+        $category = $categoryModel->getCategoryByID($_GET['id']);
+
+        if ($category) {
+            if (!empty($category->image)) {
+                unlink($category->image); // Xóa ảnh nếu tồn tại
+            }
+            $message = $categoryModel->deleteCategory($_GET['id']);
+            $_SESSION['message'] = $message ? 'Xóa thành công' : 'Xóa không thành công';
+        } else {
+            $_SESSION['message'] = 'Danh mục không tồn tại';
+        }
+
+        header("Location: ?role=admin&act=all-category");
+        exit;
+    }
 }
 ?>

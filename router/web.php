@@ -130,7 +130,11 @@ if ($role == "user") {
             $categoryController = new CategoryController();
             $categoryController->addPostCategory();  
             break;
-    
+        
+        case 'delete-category':
+            $categoryController = new CategoryController();
+            $categoryController->deleteCategory();   
+            break;
     }
 
 }
