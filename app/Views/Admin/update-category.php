@@ -2,23 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <style>
     .error-message {
-  color: red; /* Màu đỏ cho lỗi */
-  font-style: italic; /* Chữ nghiêng */
-  font-family: 'Arial', sans-serif; /* Font chữ đẹp, đơn giản */
-  font-size: 14px; /* Kích thước chữ vừa phải */
-  font-weight: 500; /* Độ đậm nhẹ nhàng */
-  margin: 10px 0; /* Tạo khoảng cách trên dưới */
-  padding: 5px; /* Khoảng cách bên trong giúp dễ nhìn */
-  border-left: 3px solid red; /* Đường viền trái nhấn mạnh */
-  background-color: #ffe6e6; /* Nền nhạt để dễ đọc */
-  letter-spacing: 2px;
-  font-size:15px;
-}
-
+        color: red;
+        /* Màu đỏ cho lỗi */
+        font-style: italic;
+        /* Chữ nghiêng */
+        font-family: 'Arial', sans-serif;
+        /* Font chữ đẹp, đơn giản */
+        font-size: 14px;
+        /* Kích thước chữ vừa phải */
+        font-weight: 500;
+        /* Độ đậm nhẹ nhàng */
+        margin: 10px 0;
+        /* Tạo khoảng cách trên dưới */
+        padding: 5px;
+        /* Khoảng cách bên trong giúp dễ nhìn */
+        border-left: 3px solid red;
+        /* Đường viền trái nhấn mạnh */
+        background-color: #ffe6e6;
+        /* Nền nhạt để dễ đọc */
+        letter-spacing: 2px;
+        font-size: 15px;
+    }
 </style>
 
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>BestBalo - Website bán balo hàng đầu VN</title>
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -72,20 +80,20 @@
                         <!-- main-content-wrap -->
                         <div class="main-content-inner">
                             <!-- main-content-wrap -->
-                            <div class="main-content-wrap"> 
-                            <div class="wg-box">
-                                    <?php 
-                                        if(isset($_SESSION['message'])){
-                                            echo "<p>" . $_SESSION['message'] . "</p>";
-                                            unset($_SESSION['message']);
-                                        }
-                                        if(isset($_SESSION['error'])){
-                                            echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
-                                            unset($_SESSION['error']);
-                                        }
+                            <div class="main-content-wrap">
+                                <div class="wg-box">
+                                    <?php
+                                    if (isset($_SESSION['message'])) {
+                                        echo "<p>" . $_SESSION['message'] . "</p>";
+                                        unset($_SESSION['message']);
+                                    }
+                                    if (isset($_SESSION['error'])) {
+                                        echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
+                                        unset($_SESSION['error']);
+                                    }
                                     ?>
-                                    <div class="title-box" 
-                                    style="background: radial-gradient(circle at top, gray, blue);
+                                    <div class="title-box"
+                                        style="background: radial-gradient(circle at top, gray, blue);
                                      color: black; 
                                      border: 3px solid black; 
                                      border-radius: 15px;
@@ -105,28 +113,27 @@
                                         <div class="mb-5">
                                             <h5><label for="name">Tên Danh Mục</label></h5>
                                             <input type="text" id="name" placeholder="Nhập tên danh mục ..." name="name"
-                                             class="form-control" value = "<?=$category->name?>">
+                                                class="form-control" value="<?= $category->name ?>">
                                         </div>
                                         <div class="mb-5">
-                                                <h5><label for="image">Image</label></h5>
-                                                
-                                                <img src="path/to/image/folder/<?=$category->image?>" 
-                                                    alt="Current Image" 
-                                                    style="width: 150px; height: auto; margin-bottom: 10px;">
-                                                
-                                                <input type="file" id="image" name="image" accept="image/*" class="form-control">
+                                            <h5><label for="image">Image</label></h5>
+
+                                            <img src="<?= $category->image ?>"
+                                                alt="Current Image"
+                                                style="width: 150px; height: auto; margin-bottom: 10px;">
+
+                                            <input type="file" id="image" name="image" accept="image/*" class="form-control">
                                         </div>
 
                                         <button class="btn btn-warning"
-                                        style='width: 100px;
+                                            style='width: 100px;
                                         background-color: blue;
                                         height:30px;
                                         margin-top:10px;
                                         border-radius:10px;
                                         border: 2px solid black;
                                         font-size:15px;
-                                        '
-                                        >Sửa</button>
+                                        '>Sửa</button>
                                     </form>
                                 </div>
                             </div>
