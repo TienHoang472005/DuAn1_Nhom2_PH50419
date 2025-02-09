@@ -16,5 +16,18 @@ class CategoryModel
         return $query->fetchAll();
     }
 
+    public function addCategoryDB($destPath)
+    {
+        $name = $_POST['name'];
+        $image = $destPath;
+        $sql = "INSERT INTO categories (name, image) VALUES (:name, :image)";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+
+        return $stmt->execute();
+    }
+
+
     
 }

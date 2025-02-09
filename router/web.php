@@ -120,6 +120,17 @@ if ($role == "user") {
             $categoryController = new CategoryController();
             $categoryController->getAllCategory();  
             break;
+
+        case 'add-category':
+            $categoryController = new CategoryController();
+            $categoryController->addCategory();  
+            break;
+
+        case 'add-post-category':
+            $categoryController = new CategoryController();
+            $categoryController->addPostCategory();  
+            break;
+    
     }
 
 }
