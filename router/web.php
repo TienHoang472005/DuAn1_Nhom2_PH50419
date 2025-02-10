@@ -145,6 +145,13 @@ if ($role == "user") {
             $categoryController = new CategoryController();
             $categoryController->updatePostCategory();  
             break;
+
+        // Quản lý đơn hàng
+        case 'show-order': {
+            $orderController = new OrderController();
+            $orderController->showOrder();
+            break;
+        }
     }
 
 }
