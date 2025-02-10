@@ -152,6 +152,11 @@ if ($role == "user") {
             $orderController->showOrder();
             break;
         }
+        case 'order-change-status': {
+            $orderController = new OrderController();
+            $orderController->changeStatus();
+            break;
+        }
     }
 
 }
