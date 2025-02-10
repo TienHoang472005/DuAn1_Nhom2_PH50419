@@ -8,6 +8,12 @@ class OrderController{
         include 'app/Views/Admin/show-order.php';
     }
 
+    public function showOrderDetail(){
+        $orderModel = new OrderModel();
+        $order_detail = $orderModel->getOrderDetail();
+        include 'app/Views/Admin/show-order-detail.php';
+    }
+    
     public function changeStatus(){
         $orderModel = new OrderModel();
         $order_detail = $orderModel->changeStatusModel();

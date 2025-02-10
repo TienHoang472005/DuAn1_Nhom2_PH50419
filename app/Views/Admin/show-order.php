@@ -70,7 +70,7 @@
                                                     </div>
                                                    <div class="list-icon-function">
                                                          <div class="item eye">
-                                                        <a href="#"><i class="icon-eye"></i></a>
+                                                        <a href="?role=admin&act=show-order-detail&order_id=<?= $order->id ?>"><i class="icon-eye"></i></a>
                                                     </div> 
                                                    </div>
                                                 </li>
