@@ -59,7 +59,7 @@
                                                     <div class="body-text"><?= $order->address ?></div>
                                                     <div class="body-text"><?= number_format($order->total) ?> VND</div>
                                                     <div>
-                                                        <form action="#" method="post">
+                                                        <form action="?role=admin&act=order-change-status" method="post">
                                                             <input type="hidden" name="order_id" value="<?= $order->id ?>">
                                                             <select name="status" class="status-select">
                                                                 <option value="pending" <?= $order->status == "pending" ? "selected" : "" ?>>Chờ xử lý</option>
