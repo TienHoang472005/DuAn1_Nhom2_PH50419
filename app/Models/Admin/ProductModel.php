@@ -16,11 +16,24 @@ class ProductModel{
     }
 
     // lấy id
-    public function getProductByID($id) {
-        $sql = "SELECT * FROM products WHERE id = :id";
-        $stmt = $this->db->pdo->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch();
+    // public function getProductByID($id) {
+    //     $sql = "SELECT * FROM products WHERE id = :id";
+    //     $stmt = $this->db->pdo->prepare($sql);
+    //     $stmt->execute([':id' => $id]);
+    //     return $stmt->fetch();
+    // }
+     public function getProductByID()
+    {
+    $id = $_GET['id'];
+    $sql = "
+    select * from products where id = :id
+    ";
+    $stmt = $this->db->pdo->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    if ($stmt->execute()) {
+    return $stmt->fetch();
+    }
+    return false;
     }
 
     // lấy id hình ảnh
@@ -69,12 +82,52 @@ class ProductModel{
         $stmt = $this->db->pdo->prepare($sql);
         return $stmt->execute($data) ? $this->db->pdo->lastInsertId() : false;
     }
-    
-    public function addGalleryImage($destPathImage, $idProduct) {
+
+    public function addGalleryImage($destPathImage, $idProduct)
+    {
         $sql = "INSERT INTO `product_image`(`product_id`, `image`) VALUES (:product_id, :image)";
         $stmt = $this->db->pdo->prepare($sql);
         return $stmt->execute([':product_id' => $idProduct, ':image' => $destPathImage]);
     }
     
+    
+    // sửa sp
+    public function updateProductToDB($destPath)
+    {
+        $sql = "
+            UPDATE `products` 
+            SET 
+                `name` = :name, 
+                `category_id` = :category_id, 
+                `description` = :description, 
+                `price` = :price, 
+                `price_sale` = :price_sale, 
+                `stock` = :stock, 
+                `image_main` = :image_main 
+            WHERE 
+                `id` = :id
+        ";
+
+        $stmt = $this->db->pdo->prepare($sql);
+
+        return $stmt->execute([
+            ':name' => $_POST['name'],
+            ':category_id' => $_POST['category'],
+            ':description' => $_POST['description'],
+            ':price' => $_POST['price'],
+            ':price_sale' => $_POST['pricesale'] ?? null,
+            ':stock' => $_POST['stock'],
+            ':image_main' => $destPath,
+            ':id' => $_GET['id']
+        ]);
+    }
+    public function deleteImageGarary($id)
+    {
+        $sql = "DELETE FROM `product_image` WHERE product_id = :product_id";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':product_id', $id);
+    
+        return $stmt->execute();
+    }
     
 }

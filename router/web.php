@@ -53,6 +53,23 @@ if ($role == "user") {
             $productController->addPostProduct();
             break;
         }
+        case 'comment-product':
+            $commentModel = new CommentRatingController();
+            $commentModel->showComment();  
+            break;
+        case 'comment-product-detail':
+            $commentModel = new CommentRatingController();
+            $commentModel->showCommentDetail();  
+            break;
+        case 'comment-delete':
+            $commentModel = new CommentRatingController();
+            $commentModel->commentDelete();  
+            break;
+        default: {
+            $commentRatingController = new CommentRatingController();
+            $commentRatingController->showComment();
+            break;
+        }
     }
 
 }
