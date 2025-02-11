@@ -15,7 +15,7 @@ class CategoryModel
         $query = $this->db->pdo->query($sql);
         return $query->fetchAll();
     }
-
+    
     public function addCategoryDB($destPath)
     {
         $name = $_POST['name'];
@@ -49,7 +49,7 @@ class CategoryModel
     // Lấy danh mục theo ID
     public function getCategoryByID($id)
     {
-    $sql = "SELECT id, name, image FROM categories WHERE id = :id"; // Giữ nguyên tên cột
+    $sql = "SELECT id, name AS category_name, image FROM categories WHERE id = :id"; // Giữ nguyên tên cột
     $stmt = $this->db->pdo->prepare($sql);
     $stmt->execute([':id' => $id]);
     return $stmt->fetch(PDO::FETCH_OBJ); // Đảm bảo trả về dạng đối tượng
