@@ -113,7 +113,7 @@
                                         <div class="mb-5">
                                             <h5><label for="name">Tên Danh Mục</label></h5>
                                             <input type="text" id="name" placeholder="Nhập tên danh mục ..." name="name"
-                                                class="form-control" value="<?= $category->name ?>">
+                                                class="form-control" value="<?= $category->category_name ?>">
                                         </div>
                                         <div class="mb-5">
                                             <h5><label for="image">Image</label></h5>
