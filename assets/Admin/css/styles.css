@@ -4569,7 +4569,7 @@ select option {
 }
 
 .wg-table.table-product-list>* {
-  min-width: 1492px;
+  min-width: 200px;
 }
 
 .wg-table.table-product-list .wg-product,
